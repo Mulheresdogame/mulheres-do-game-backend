@@ -1,5 +1,5 @@
 import express from 'express';
-import { supabase } from '../supabaseClient.js';
+import supabase from '../supabaseClient.js';
 
 const router = express.Router();
 
@@ -12,14 +12,15 @@ router.post('/', async (req, res) => {
       .insert([{ nome, idade, pais, provincia, email, telefone, sobre }]);
 
     if (error) {
-      console.error('Erro do Supabase:', error.message);
-      return res.status(500).json({ error: 'Erro ao salvar candidatura' });
+      console.error('🔴 ERRO DO SUPABASE:', error); // mostra o erro real
+      return res.status(500).json({ error: 'Erro ao salvar candidatura', detalhe: error.message });
     }
 
+    console.log('✅ Registro salvo:', data);
     res.status(200).json({ message: 'Candidatura salva com sucesso', data });
   } catch (err) {
-    console.error('Erro geral:', err.message);
-    res.status(500).json({ error: 'Erro inesperado' });
+    console.error('❌ ERRO GERAL:', err);
+    res.status(500).json({ error: 'Erro inesperado', detalhe: err.message });
   }
 });
 
