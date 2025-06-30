@@ -1,6 +1,6 @@
 import express from 'express';
-import candidaturaRoutes from './routes/candidatura.js';
 import dotenv from 'dotenv';
+import candidaturaRoutes from './routes/candidatura.js';
 
 // Carregar variáveis do .env
 dotenv.config();
