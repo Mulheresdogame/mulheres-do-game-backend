@@ -1,3 +1,4 @@
+import cors from 'cors';
 import express from 'express';
 import dotenv from 'dotenv';
 import candidaturaRoutes from './routes/candidatura.js';
@@ -5,7 +6,7 @@ import candidaturaRoutes from './routes/candidatura.js';
 // Carregar variáveis do .env
 dotenv.config();
 
-const app = express();
+const app = express(); app.use(cors());
 
 // Permitir leitura de JSON
 app.use(express.json());
